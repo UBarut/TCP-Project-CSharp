@@ -62,7 +62,7 @@ namespace CepteSef
                 Form1.form1.btnBack.Show();
                 TransferFoodInfo();
                 TransferFavorite();
-                sqlCommandProcess.Proc("AddViews", AddView,Form1.form1.connection);
+                sqlCommandProcess.Proc("AddViews", AddView);
             }
             else if ((sender as Button).Name.ToString() == "btnAddToCart")
             {
@@ -93,7 +93,7 @@ namespace CepteSef
             {
                 if (UserLoginPanel.userLoginPanel.userID != -1)
                 {
-                    SqlDataReader food = adapter.SqlOperations(sqlCommandProcess.Select("Foods"), Form1.form1.connection);
+                    SqlDataReader food = adapter.SqlOperations(sqlCommandProcess.Select("Foods"));
                     while (food.Read())
                     {
                         if (food["Food"].ToString() == lblFoodTitle.Text)
@@ -114,7 +114,7 @@ namespace CepteSef
         }
         public void TransferFoodInfo()
         {
-            SqlDataReader food = adapter.SqlOperations(sqlCommandProcess.Select("Foods"), Form1.form1.connection);
+            SqlDataReader food = adapter.SqlOperations(sqlCommandProcess.Select("Foods"));
             while (food.Read())
             {
                 if (lblFoodTitle.Text == food["Food"].ToString())
@@ -123,7 +123,7 @@ namespace CepteSef
                     FoodPanel.foodPanel.lblFoodExplanation.Text = food["FoodExplanation"].ToString();
                     FoodPanel.foodPanel.rtbIngredients.Text = food["IngredientsText"].ToString();
                     FoodPanel.foodPanel.rtbSteps.Text = food["Steps"].ToString();
-                    FoodPanel.foodPanel.pbFood.BackgroundImage = Image.FromFile(@$"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\{food["Food_Picture"]}");
+                    FoodPanel.foodPanel.pbFood.BackgroundImage = Image.FromFile(@$"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\{food["Food_Picture"]}");
                     FoodPanel.foodPanel.pbFood.BackgroundImageLayout = ImageLayout.Stretch;
                     if (Form1.form1.location == "mainMenu")
                     {
@@ -146,7 +146,7 @@ namespace CepteSef
 
         public void CheckFavorite(string name)
         {
-            SqlDataReader favorite = adapter.SqlOperations("select * from Favorites as fav right join Foods as f on(fav.Favorite_FoodID=f.ID) left join User_Information as u on(fav.UserID=u.ID)  where UserID='" + UserLoginPanel.userLoginPanel.userID.ToString() + "'", Form1.form1.connection);
+            SqlDataReader favorite = adapter.SqlOperations("select * from Favorites as fav right join Foods as f on(fav.Favorite_FoodID=f.ID) left join User_Information as u on(fav.UserID=u.ID)  where UserID='" + UserLoginPanel.userLoginPanel.userID.ToString() + "'");
             while (favorite.Read())
             {
                 if (/*this.Name.ToString()*/name == favorite["Food"].ToString())
@@ -178,11 +178,11 @@ namespace CepteSef
             {
                 if (check)
                 {
-                    sqlCommandProcess.Proc("AddFavorite", procValue, Form1.form1.connection);
+                    sqlCommandProcess.Proc("AddFavorite", procValue);
                 }
                 else if (!check)
                 {
-                    sqlCommandProcess.Proc("RemoveFavorite", procValue, Form1.form1.connection);
+                    sqlCommandProcess.Proc("RemoveFavorite", procValue);
                 }
             }
             
@@ -194,17 +194,17 @@ namespace CepteSef
         }
         public void TransferFavorite()
         {
-            SqlDataReader favorite = adapter.SqlOperations("select * from Favorites as fav right join Foods as f on(fav.Favorite_FoodID=f.ID) left join User_Information as u on(fav.UserID=u.ID)  where UserID='" + UserLoginPanel.userLoginPanel.userID.ToString() + "'", Form1.form1.connection);
+            SqlDataReader favorite = adapter.SqlOperations("select * from Favorites as fav right join Foods as f on(fav.Favorite_FoodID=f.ID) left join User_Information as u on(fav.UserID=u.ID)  where UserID='" + UserLoginPanel.userLoginPanel.userID.ToString() + "'");
             while (favorite.Read())
             {
                 if (this.Name.ToString() == favorite["Food"].ToString())
                 {
-                    FoodPanel.foodPanel.btnClickAddToFavorite.BackgroundImage = Image.FromFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\favoriteFill.png");
+                    FoodPanel.foodPanel.btnClickAddToFavorite.BackgroundImage = Image.FromFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\favoriteFill.png");
                     break;
                 }
                 else
                 {
-                    FoodPanel.foodPanel.btnClickAddToFavorite.BackgroundImage = Image.FromFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\favorite.png");
+                    FoodPanel.foodPanel.btnClickAddToFavorite.BackgroundImage = Image.FromFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\favorite.png");
                 }
             }
             Form1.form1.connection.Close();
@@ -212,9 +212,9 @@ namespace CepteSef
         public void fontChange()
         {
             pfc = new PrivateFontCollection();
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\VintageParty-FreeVersion.ttf");
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\coolvetica condensed rg.otf");
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\CaviarDreams_Italic.ttf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\VintageParty-FreeVersion.ttf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\coolvetica condensed rg.otf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\CaviarDreams_Italic.ttf");
         }
     }
 }

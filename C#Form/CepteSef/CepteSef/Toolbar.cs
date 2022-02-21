@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing.Text;
+using System.Threading;
 
 namespace CepteSef
 {
@@ -55,12 +56,12 @@ namespace CepteSef
             {
                 sliderBool = true;
                 form1.pnlSliderMenu.BackColor = color.orange;
-                form1.btnSliderMenu.BackgroundImage = Image.FromFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\exit.png");
+                form1.btnSliderMenu.BackgroundImage = Image.FromFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\exit.png");
             }
             else
             {
                 sliderBool = false;
-                form1.btnSliderMenu.BackgroundImage = Image.FromFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\menu.png");
+                form1.btnSliderMenu.BackgroundImage = Image.FromFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\menu.png");
 
             }
             form1.pnlSliderMenu.Visible = sliderBool;
@@ -102,16 +103,20 @@ namespace CepteSef
 
             form1.pnlSliderMenu.Visible = false;
             sliderBool = false;
-            form1.btnSliderMenu.BackgroundImage = Image.FromFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\menu.png");
+            form1.btnSliderMenu.BackgroundImage = Image.FromFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\menu.png");
             
         }
 
         private void Button_Click(object sender, EventArgs e)
         {
+            foreach (var item in form1.pnlMenus.Controls)
+            {
+                Debug.WriteLine(item);
+            }
+            Debug.WriteLine("Toplam Sayfa Sayısı: "+form1.pnlScreen.Controls.Count);
             if ((sender as Button).Name.ToString() == "btnMainMenu")
             {
                 form1.location = "mainMenu";
-                MainPanel mainpanel = new MainPanel();
                 form1.HiddenScreens();
                 form1.mainPanel.Show();
             }
@@ -119,6 +124,8 @@ namespace CepteSef
             {
                 form1.location = "category";
                 form1.HiddenScreens();
+                //RecipePanel.recipePanel.AllSetupRecipe();
+                //RecipePanel.recipePanel.RecipePanel_Resize(sender, e);
                 form1.recipePanel.Show();
             }
             else if ((sender as Button).Name.ToString() == "btnMakeMenu")
@@ -145,7 +152,7 @@ namespace CepteSef
             else if (form1.categoryPanel.Visible && form1.location == "category")
             {
                 form1.HiddenScreens();
-                form1.recipePanel.Show();
+                //form1.recipePanel.Show();
                 form1.btnBack.Hide();
             }
             else if (form1.location == "search")
@@ -156,7 +163,7 @@ namespace CepteSef
             }
             else if (form1.foodPanel.Visible) // anamenüde foodpanele geçiş ve geri dönüşte sıkıntı olabilir. İncele.
             {
-                SqlDataReader category = adapter.SqlOperations(sqlCommandProcess.Select("Category"), form1.connection);
+                SqlDataReader category = adapter.SqlOperations(sqlCommandProcess.Select("Category"));
                 while (category.Read())
                 {
                     if (form1.location == category["Category"].ToString())
@@ -174,9 +181,9 @@ namespace CepteSef
         public void fontChange()
         {
             pfc = new PrivateFontCollection();
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\VintageParty-FreeVersion.ttf");
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\coolvetica condensed rg.otf");
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\CaviarDreams_Italic.ttf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\VintageParty-FreeVersion.ttf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\coolvetica condensed rg.otf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\CaviarDreams_Italic.ttf");
         }
     }
 }

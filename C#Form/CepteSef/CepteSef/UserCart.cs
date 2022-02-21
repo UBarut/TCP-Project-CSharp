@@ -14,10 +14,6 @@ namespace CepteSef
     public partial class UserCart : Form
     {
         public static UserCart userCart;
-        SqlConnection connection = new SqlConnection("Data Source=DESKTOP-O4DQSUN;Initial Catalog=CepteSefdb;Integrated Security=True");
-        //SqlConnection connection = new SqlConnection("Data Source=DESKTOP-D7I6MTC;Initial Catalog=CepteSefdb;Integrated Security=True");
-        SqlCommandProcess sqlCommandProcess = new SqlCommandProcess();
-        Adapter adapter = new Adapter();
         Colors color = new Colors();
         PrivateFontCollection pfc;
 
@@ -56,7 +52,7 @@ namespace CepteSef
             if ((sender as Button).Name.ToString() == "btnAddFood")
             {
                 Form1.form1.HiddenScreens();
-                Form1.form1.recipePanel.Show();
+                //Form1.form1.recipePanel.Show();
             }
             else if ((sender as Button).Name.ToString() == "btnClear")
             {
@@ -80,9 +76,9 @@ namespace CepteSef
         public void fontChange()
         {
             pfc = new PrivateFontCollection();
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\VintageParty-FreeVersion.ttf");
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\coolvetica condensed rg.otf");
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\CaviarDreams_Italic.ttf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\VintageParty-FreeVersion.ttf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\coolvetica condensed rg.otf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\CaviarDreams_Italic.ttf");
         }
     }
 }

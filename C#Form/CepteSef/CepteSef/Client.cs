@@ -31,7 +31,7 @@ namespace CepteSef
 
             try
             {
-                SqlDataReader portt = adapter.SqlOperations("select * from User_Information where ID=" + UserLoginPanel.userLoginPanel.userID, Form1.form1.connection);
+                SqlDataReader portt = adapter.SqlOperations("select * from User_Information where ID=" + UserLoginPanel.userLoginPanel.userID);
                 while (portt.Read())
                 {
                     client.Connect(ip, Convert.ToInt32(portt["Port"].ToString()));
@@ -42,7 +42,7 @@ namespace CepteSef
                 int[] foodIDs = new int[1000];
                 List<string> nutrients = new List<string>();
                 //string sqlString = "select Nutrient_Name from Nutrients Where ID in (select * from string_split((select Ingredients from Foods where ID='"+1+"'),','))";
-                SqlDataReader food = adapter.SqlOperations(sqlCommandProcess.Select("Foods"), Form1.form1.connection);
+                SqlDataReader food = adapter.SqlOperations(sqlCommandProcess.Select("Foods"));
                 while (food.Read())
                 {
                     foreach (string foods in UserCart.userCart.lbCartList.Items)
@@ -57,7 +57,7 @@ namespace CepteSef
                 Form1.form1.connection.Close();
                 for (int i = 1; i < count + 1; i++)
                 {
-                    SqlDataReader sqlNutrients = adapter.SqlOperations("select Nutrient_Name from Nutrients Where ID in (select * from string_split((select Ingredients from Foods where ID='" + foodIDs[i] + "'),','))", Form1.form1.connection);
+                    SqlDataReader sqlNutrients = adapter.SqlOperations("select Nutrient_Name from Nutrients Where ID in (select * from string_split((select Ingredients from Foods where ID='" + foodIDs[i] + "'),','))");
                     while (sqlNutrients.Read())
                     {
                         if (!nutrients.Contains(sqlNutrients["Nutrient_Name"].ToString()))

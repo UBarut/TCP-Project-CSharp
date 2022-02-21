@@ -15,8 +15,6 @@ namespace CepteSef
     public partial class UserLoginPanel : Form
     {
         public static UserLoginPanel userLoginPanel;
-        SqlConnection connection = new SqlConnection("Data Source=DESKTOP-O4DQSUN;Initial Catalog=CepteSefdb;Integrated Security=True");
-        //SqlConnection connection = new SqlConnection("Data Source=DESKTOP-D7I6MTC;Initial Catalog=CepteSefdb;Integrated Security=True");
         SqlCommandProcess sqlCommandProcess = new SqlCommandProcess();
         Adapter adapter = new Adapter();
         Colors color = new Colors();
@@ -77,7 +75,7 @@ namespace CepteSef
         }
         private void btnUserAdd_Click(object sender, EventArgs e)
         {
-            sqlCommandProcess.Proc("UserAdd", AddProc, connection);
+            sqlCommandProcess.Proc("UserAdd", AddProc);
             MessageBox.Show("Kayıt İşlemi Gerçekleşti.");
             pnlLogo.Show();
             check = true;
@@ -95,7 +93,7 @@ namespace CepteSef
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            SqlDataReader user = adapter.SqlOperations(sqlCommandProcess.Select("Users"), connection);
+            SqlDataReader user = adapter.SqlOperations(sqlCommandProcess.Select("Users"));
             while (user.Read())
             {
                 if (tbLoginPassword.Text == user["Password"].ToString() && tbLoginUserName.Text == user["UserName"].ToString())
@@ -116,11 +114,11 @@ namespace CepteSef
                     userID= Convert.ToInt32(user["ID"].ToString());
                 }
             }
-            connection.Close();
+            Form1.form1.connection.Close();
         }
         public void changeFavorites()
         {
-            SqlDataReader favorite = adapter.SqlOperations("select * from Favorites as fav right join Foods as f on(fav.Favorite_FoodID=f.ID) left join User_Information as u on(fav.UserID=u.ID)  where UserID='" + UserLoginPanel.userLoginPanel.userID.ToString() + "'", connection);
+            SqlDataReader favorite = adapter.SqlOperations("select * from Favorites as fav right join Foods as f on(fav.Favorite_FoodID=f.ID) left join User_Information as u on(fav.UserID=u.ID)  where UserID='" + UserLoginPanel.userLoginPanel.userID.ToString() + "'");
             while (favorite.Read())
             {
                 if (UC_FoodCardPanel.foodCardPanel.Name.ToString() == favorite["Food"].ToString() /*&& FoodPanel.foodPanel.lblFoodName.Text == favorite["Food"].ToString()*/)
@@ -130,14 +128,14 @@ namespace CepteSef
                     Form1.form1.favoriteIcon = "favoriteFill";
                 }
             }
-            connection.Close();
+            Form1.form1.connection.Close();
         }
         public void fontChange()
         {
             pfc = new PrivateFontCollection();
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\VintageParty-FreeVersion.ttf");
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\coolvetica condensed rg.otf");
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\CaviarDreams_Italic.ttf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\VintageParty-FreeVersion.ttf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\coolvetica condensed rg.otf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\CaviarDreams_Italic.ttf");
         }
     }
 }

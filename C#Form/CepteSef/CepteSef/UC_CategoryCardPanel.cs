@@ -32,7 +32,7 @@ namespace CepteSef
             Form1.form1.btnBack.Show();
             CategoryPanel.categoryPanel.lblCategoryName.Text = lblCategoryPanelName.Text;
 
-            SqlDataReader category = adapter.SqlOperations(sqlCommandProcess.Select("Category"), Form1.form1.connection);
+            SqlDataReader category = adapter.SqlOperations(sqlCommandProcess.Select("Category"));
             while (category.Read())
             {
                 if (lblCategoryPanelName.Text == category["Category"].ToString())
@@ -48,9 +48,9 @@ namespace CepteSef
         public void fontChange()
         {
             pfc = new PrivateFontCollection();
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\VintageParty-FreeVersion.ttf");
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\coolvetica condensed rg.otf");
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\CaviarDreams_Italic.ttf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\VintageParty-FreeVersion.ttf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\coolvetica condensed rg.otf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\CaviarDreams_Italic.ttf");
         }
     }
 }

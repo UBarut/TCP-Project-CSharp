@@ -18,13 +18,13 @@ namespace CepteSef
         //public SqlConnection connection = new SqlConnection("Data Source=DESKTOP-D7I6MTC;Initial Catalog=CepteSefdb;Integrated Security=True");
 
         public static Form1 form1;
-        public UserLoginPanel userLoginPanel = new UserLoginPanel();
-        public MainPanel mainPanel = new MainPanel();
-        public CategoryPanel categoryPanel = new CategoryPanel();
-        public RecipePanel recipePanel = new RecipePanel();
-        public UserCart userCart = new UserCart();
-        public FoodPanel foodPanel = new FoodPanel();
-        public SearchPanel searchPanel = new SearchPanel();
+        public UserLoginPanel userLoginPanel;
+        public MainPanel mainPanel;
+        public CategoryPanel categoryPanel;
+        public RecipePanel recipePanel;
+        public UserCart userCart;
+        public FoodPanel foodPanel;
+        public SearchPanel searchPanel;
         Toolbar toolbar = new Toolbar();
         Colors color = new Colors();
         Client client = new Client();
@@ -38,6 +38,13 @@ namespace CepteSef
         public Form1()
         {
             form1 = this;
+            recipePanel = new RecipePanel();
+            userLoginPanel = new UserLoginPanel();
+            mainPanel = new MainPanel();
+            categoryPanel = new CategoryPanel();
+            userCart = new UserCart();
+            foodPanel = new FoodPanel();
+            searchPanel = new SearchPanel();
             InitializeComponent();
             toolbar.AccessForm1(this);
             client.StartServer();
@@ -108,9 +115,9 @@ namespace CepteSef
         public void fontChange()
         {
             pfc = new PrivateFontCollection();
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\VintageParty-FreeVersion.ttf");
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\coolvetica condensed rg.otf");
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\CaviarDreams_Italic.ttf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\VintageParty-FreeVersion.ttf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\coolvetica condensed rg.otf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\CaviarDreams_Italic.ttf");
         }
     }
 }

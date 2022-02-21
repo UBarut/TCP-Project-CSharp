@@ -13,8 +13,6 @@ namespace CepteSef
     public partial class FoodPanel : Form
     {
         public static FoodPanel foodPanel;
-        SqlConnection connection = new SqlConnection("Data Source=DESKTOP-O4DQSUN;Initial Catalog=CepteSefdb;Integrated Security=True");
-        //SqlConnection connection = new SqlConnection("Data Source=DESKTOP-D7I6MTC;Initial Catalog=CepteSefdb;Integrated Security=True");
         SqlCommandProcess sqlCommandProcess = new SqlCommandProcess();
         Adapter adapter = new Adapter();
         Colors color = new Colors();
@@ -33,7 +31,7 @@ namespace CepteSef
             Dock = DockStyle.Fill;
             fontChange();
             pbFood.BackgroundImageLayout = ImageLayout.Stretch;
-            sqlCommandProcess.Proc("AddViews", AddView, connection);
+            sqlCommandProcess.Proc("AddViews", AddView);
             //TransferFoodInfo();
             BackColor = color.light;
             btnClickAddToCart.ForeColor = color.red;
@@ -80,7 +78,7 @@ namespace CepteSef
         {
             if (UserLoginPanel.userLoginPanel.userID > 0)
             {
-                SqlDataReader food = adapter.SqlOperations(sqlCommandProcess.Select("Foods"), Form1.form1.connection);
+                SqlDataReader food = adapter.SqlOperations(sqlCommandProcess.Select("Foods"));
                 while (food.Read())
                 {
                     if (food["Food"].ToString() == lblFoodName.Text)
@@ -100,7 +98,7 @@ namespace CepteSef
         }
         public void TransferFoodInfo()
         {
-            SqlDataReader food = adapter.SqlOperations(sqlCommandProcess.Select("Foods"), connection);
+            SqlDataReader food = adapter.SqlOperations(sqlCommandProcess.Select("Foods"));
             while (food.Read())
             {
                 if (foodNamee == food["Food"].ToString())
@@ -116,7 +114,7 @@ namespace CepteSef
                     break;
                 }
             }
-            connection.Close();
+            Form1.form1.connection.Close();
         }
 
         public void AddView()
@@ -126,9 +124,9 @@ namespace CepteSef
         public void fontChange()
         {
             pfc = new PrivateFontCollection();
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\VintageParty-FreeVersion.ttf");
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\coolvetica condensed rg.otf");
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\CaviarDreams_Italic.ttf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\VintageParty-FreeVersion.ttf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\coolvetica condensed rg.otf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\CaviarDreams_Italic.ttf");
         }
     }
 }

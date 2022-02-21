@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kufub\\OneDrive\\Masaüstü\\CepteSefProje\\C#Form\\CepteSefMarket\\CepteSefMarket\\CepteSefMarket.csproj": {}
+    "C:\\Users\\kufub\\OneDrive\\Masaüstü\\CepteSefProject\\C#Form\\CepteSefMarket\\CepteSefMarket\\CepteSefMarket.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kufub\\OneDrive\\Masaüstü\\CepteSefProje\\C#Form\\CepteSefMarket\\CepteSefMarket\\CepteSefMarket.csproj": {
+    "C:\\Users\\kufub\\OneDrive\\Masaüstü\\CepteSefProject\\C#Form\\CepteSefMarket\\CepteSefMarket\\CepteSefMarket.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kufub\\OneDrive\\Masaüstü\\CepteSefProje\\C#Form\\CepteSefMarket\\CepteSefMarket\\CepteSefMarket.csproj",
+        "projectUniqueName": "C:\\Users\\kufub\\OneDrive\\Masaüstü\\CepteSefProject\\C#Form\\CepteSefMarket\\CepteSefMarket\\CepteSefMarket.csproj",
         "projectName": "CepteSefMarket",
-        "projectPath": "C:\\Users\\kufub\\OneDrive\\Masaüstü\\CepteSefProje\\C#Form\\CepteSefMarket\\CepteSefMarket\\CepteSefMarket.csproj",
+        "projectPath": "C:\\Users\\kufub\\OneDrive\\Masaüstü\\CepteSefProject\\C#Form\\CepteSefMarket\\CepteSefMarket\\CepteSefMarket.csproj",
         "packagesPath": "C:\\Users\\kufub\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kufub\\OneDrive\\Masaüstü\\CepteSefProje\\C#Form\\CepteSefMarket\\CepteSefMarket\\obj\\",
+        "outputPath": "C:\\Users\\kufub\\OneDrive\\Masaüstü\\CepteSefProject\\C#Form\\CepteSefMarket\\CepteSefMarket\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kufub\\AppData\\Roaming\\NuGet\\NuGet.Config",

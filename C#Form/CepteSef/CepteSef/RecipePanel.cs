@@ -11,9 +11,6 @@ namespace CepteSef
 {
     public partial class RecipePanel : Form
     {
-        SqlConnection connection = new SqlConnection("Data Source=DESKTOP-O4DQSUN;Initial Catalog=CepteSefdb;Integrated Security=True");
-        //SqlConnection connection = new SqlConnection("Data Source=DESKTOP-D7I6MTC;Initial Catalog=CepteSefdb;Integrated Security=True");
-
         //Access Process
         UC_CategoryCardPanel categoriesCard;
         SqlCommandProcess sqlCommandProcess = new SqlCommandProcess();
@@ -38,7 +35,7 @@ namespace CepteSef
             Padding = new Padding(10);
         }
 
-        private void RecipePanel_Resize(object sender, EventArgs e)
+        public void RecipePanel_Resize(object sender, EventArgs e)
         {
             if (this.Size.Width <= 1200)
             {
@@ -57,7 +54,7 @@ namespace CepteSef
 
         public void AllCategories(Single percent, int row)
         {
-            SqlDataReader category = adapter.SqlOperations(sqlCommandProcess.Select("Category"),connection);
+            SqlDataReader category = adapter.SqlOperations(sqlCommandProcess.Select("Category"));
             this.Controls.Clear();
             int count = 0;
             TableLayoutPanel panel = new TableLayoutPanel();
@@ -74,7 +71,7 @@ namespace CepteSef
                 categoriesCard = new UC_CategoryCardPanel();
                 categoriesCard.Name = "cntlPnlCategory" + count;
                 categoriesCard.lblCategoryPanelName.Text = category["Category"].ToString();
-                categoriesCard.pbCategory.BackgroundImage = Image.FromFile(@$"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\{category["Category_Picture"]}");
+                categoriesCard.pbCategory.BackgroundImage = Image.FromFile(@$"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\{category["Category_Picture"]}");
                 categoriesCard.pbCategory.BackgroundImageLayout = ImageLayout.Stretch;
                 while (count2 < row)
                 {
@@ -97,7 +94,7 @@ namespace CepteSef
                 }
                 count++;
             }
-            connection.Close();
+            Form1.form1.connection.Close();
         }
     }
 }

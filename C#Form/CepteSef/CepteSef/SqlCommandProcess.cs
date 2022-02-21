@@ -12,16 +12,16 @@ namespace CepteSef
         SqlCommand sqlCommand;
 
         //Procedure Komutlarını Cekme
-        public void Proc(string procName, Action ProcProcess, SqlConnection connection)
+        public void Proc(string procName, Action ProcProcess)
         {
-            connection.Open();
+            Form1.form1.connection.Open();
             sqlCommand = new SqlCommand();
-            sqlCommand.Connection = connection;
+            sqlCommand.Connection = Form1.form1.connection;
             sqlCommand.CommandType = CommandType.StoredProcedure;
             sqlCommand.CommandText = procName;
             ProcProcess();
             sqlCommand.ExecuteNonQuery();
-            connection.Close();
+            Form1.form1.connection.Close();
         }
         public void Proc(string procName)
         {

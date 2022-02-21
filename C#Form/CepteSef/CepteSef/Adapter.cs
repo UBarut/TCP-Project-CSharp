@@ -18,10 +18,10 @@ namespace CepteSef
             dgv.DataSource = datatable;
             form1.connection.Close();
         }
-        public SqlDataReader SqlOperations(string sqlCommand, SqlConnection connection)
+        public SqlDataReader SqlOperations(string sqlCommand)
         {
-            connection.Open();
-            SqlCommand sqlCommandName = new SqlCommand(sqlCommand, connection);
+            Form1.form1.connection.Open();
+            SqlCommand sqlCommandName = new SqlCommand(sqlCommand, Form1.form1.connection);
             SqlDataReader dataReader = sqlCommandName.ExecuteReader();
             return dataReader;
         }

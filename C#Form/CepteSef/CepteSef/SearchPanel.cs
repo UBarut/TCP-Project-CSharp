@@ -12,11 +12,8 @@ namespace CepteSef
     public partial class SearchPanel : Form
     {
         public static SearchPanel searchPanel;
-        public SqlConnection connection = new SqlConnection("Data Source=DESKTOP-O4DQSUN;Initial Catalog=CepteSefdb;Integrated Security=True");
-        //public SqlConnection connection = new SqlConnection("Data Source=DESKTOP-D7I6MTC;Initial Catalog=CepteSefdb;Integrated Security=True");
-        SqlCommandProcess sqlCommandProcess = new SqlCommandProcess();
-        Adapter adapter = new Adapter();
-        Colors color = new Colors();
+        readonly Adapter adapter = new Adapter();
+        readonly Colors color = new Colors();
         UC_FoodCardPanel foodCard;
 
         //Values
@@ -37,7 +34,7 @@ namespace CepteSef
         {
             pnlScreen.Controls.Clear();
             pnlScreen.AutoScroll = true;
-            SqlDataReader searching = adapter.SqlOperations($"select * from Foods where Food like '%{searchedWord}%'", connection);
+            SqlDataReader searching = adapter.SqlOperations($"select * from Foods where Food like '%{searchedWord}%'");
             while (searching.Read())
             {
                 foodCard = new UC_FoodCardPanel();
@@ -60,7 +57,7 @@ namespace CepteSef
                 pnlY += foodCard.Size.Height + 20;
                 pnlScreen.Controls.Add(foodCard);
             }
-            connection.Close();
+            Form1.form1.connection.Close();
             //CheckFavorite(foodCard);
         }
     }

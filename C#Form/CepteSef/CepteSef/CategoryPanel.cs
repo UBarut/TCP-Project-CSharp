@@ -15,8 +15,6 @@ namespace CepteSef
     public partial class CategoryPanel : Form
     {
         public static CategoryPanel categoryPanel;
-        SqlConnection connection = new SqlConnection("Data Source=DESKTOP-O4DQSUN;Initial Catalog=CepteSefdb;Integrated Security=True");
-        //SqlConnection connection = new SqlConnection("Data Source=DESKTOP-D7I6MTC;Initial Catalog=CepteSefdb;Integrated Security=True");
         SqlCommandProcess sqlCommandProcess = new SqlCommandProcess();
         Colors color = new Colors();
         UC_FoodCardPanel foodsCard;
@@ -65,7 +63,7 @@ namespace CepteSef
 
         public void CategoryButtons()
         {
-            SqlDataReader category = adapter.SqlOperations(sqlCommandProcess.Select("Category"), connection);
+            SqlDataReader category = adapter.SqlOperations(sqlCommandProcess.Select("Category"));
             pnlCategories.AutoScroll = true;
             while (category.Read())
             {
@@ -88,7 +86,7 @@ namespace CepteSef
                 pnlCategories.Controls.Add(button);
                 count++;
             }
-            connection.Close();
+            Form1.form1.connection.Close();
         }
 
         private void Button_MouseLeave(object sender, EventArgs e)
@@ -105,7 +103,7 @@ namespace CepteSef
 
         private void Button_Click(object sender, EventArgs e)
         {
-            SqlDataReader category = adapter.SqlOperations(sqlCommandProcess.Select("Category"), connection);
+            SqlDataReader category = adapter.SqlOperations(sqlCommandProcess.Select("Category"));
             while (category.Read())
             {
                 if ((sender as Button).Text.ToString() == category["Category"].ToString())
@@ -114,12 +112,12 @@ namespace CepteSef
                     lblCategoryName.Text = category["Category"].ToString();
                 }
             }
-            connection.Close();
+            Form1.form1.connection.Close();
             CategoryPanel_Resize(sender, e);
         }
         public void FoodsOfCategories(Single percent, int row)
         {
-            SqlDataReader food = adapter.SqlOperations(sqlCommandProcess.Select("FoodsOfCategory") + Form1.form1.categoryID.ToString(), connection);
+            SqlDataReader food = adapter.SqlOperations(sqlCommandProcess.Select("FoodsOfCategory") + Form1.form1.categoryID.ToString());
             pnlFoodCards_Category.Controls.Clear();
             int count = 0;
             TableLayoutPanel panel = new TableLayoutPanel();
@@ -140,7 +138,7 @@ namespace CepteSef
                 //{
 
                 //}
-                foodsCard.pictureBox1.BackgroundImage = Image.FromFile(@$"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\{food["Food_Picture"]}");
+                foodsCard.pictureBox1.BackgroundImage = Image.FromFile(@$"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\{food["Food_Picture"]}");
                 foodsCard.pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
                 while (count2 < row)
                 {
@@ -163,8 +161,8 @@ namespace CepteSef
                 }
                 count++;
             }
-            connection.Close();
-            SqlDataReader favorite = adapter.SqlOperations("select * from Favorites as fav right join Foods as f on(fav.Favorite_FoodID=f.ID) left join User_Information as u on(fav.UserID=u.ID)  where f.CategoryID='" + Form1.form1.categoryID.ToString() + "' and UserID='" + UserLoginPanel.userLoginPanel.userID.ToString() + "'", connection);
+            Form1.form1.connection.Close();
+            SqlDataReader favorite = adapter.SqlOperations("select * from Favorites as fav right join Foods as f on(fav.Favorite_FoodID=f.ID) left join User_Information as u on(fav.UserID=u.ID)  where f.CategoryID='" + Form1.form1.categoryID.ToString() + "' and UserID='" + UserLoginPanel.userLoginPanel.userID.ToString() + "'");
             while (favorite.Read())
             {
                 Debug.WriteLine(favorite["Food"].ToString());
@@ -172,19 +170,19 @@ namespace CepteSef
                 {
                     if (card.Name.ToString() == favorite["Food"].ToString())
                     {
-                        card.btnFavorite.BackgroundImage = Image.FromFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\favoriteFill.png");
+                        card.btnFavorite.BackgroundImage = Image.FromFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\favoriteFill.png");
                         Form1.form1.favoriteIcon = "favoriteFill";
                     }
                 }
             }
-            connection.Close();
+            Form1.form1.connection.Close();
         }
         public void fontChange()
         {
             pfc = new PrivateFontCollection();
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\VintageParty-FreeVersion.ttf");
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\coolvetica condensed rg.otf");
-            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProje\C#Form\CepteSef\CepteSef\Resources\CaviarDreams_Italic.ttf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\VintageParty-FreeVersion.ttf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\coolvetica condensed rg.otf");
+            pfc.AddFontFile(@"C:\Users\kufub\OneDrive\Masaüstü\CepteSefProject\C#Form\CepteSef\CepteSef\Resources\CaviarDreams_Italic.ttf");
         }
     }
 }

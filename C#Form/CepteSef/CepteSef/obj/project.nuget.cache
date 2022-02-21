@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "r7MtyPR7Tns9FoN3GxUed9u5cxYDv+hUsfb3f4XvzYFVJjuuhdYQDVjahik6GDALqMi1ZPXB1ryuHmu+ItSpLA==",
+  "dgSpecHash": "1Cc06bZ5QCcZIfeL/fiRXu2Knkv3unDgL8IZuKZnyLIWloTL9RM99MXvH1s4ns4fdYL08E/dUeeD8F2F+OIncw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\kufub\\OneDrive\\Masaüstü\\CepteSefProje\\C#Form\\CepteSef\\CepteSef\\CepteSef.csproj",
+  "projectFilePath": "C:\\Users\\kufub\\OneDrive\\Masaüstü\\CepteSefProject\\C#Form\\CepteSef\\CepteSef\\CepteSef.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kufub\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\kufub\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
