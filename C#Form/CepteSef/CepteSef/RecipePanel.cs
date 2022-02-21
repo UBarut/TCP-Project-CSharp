@@ -19,8 +19,9 @@ namespace CepteSef
 
 
         //Values
-
         public static RecipePanel recipePanel;
+        TableLayoutPanel panel = new TableLayoutPanel();
+        int count2 = 0;
         public RecipePanel()
         {
             InitializeComponent();
@@ -37,17 +38,25 @@ namespace CepteSef
 
         public void RecipePanel_Resize(object sender, EventArgs e)
         {
-            if (this.Size.Width <= 1200)
+            if (this.Size.Width <= 500)
             {
-                AllCategories(33.33F, 3);
+                categoryResize(100F, 1);
+            }
+            else if (this.Size.Width <= 800)
+            {
+                categoryResize(50F, 2);
+            }
+            else if (this.Size.Width <= 1200)
+            {
+                categoryResize(33.33F, 3);
             }
             else if (this.Size.Width > 1200 && this.Size.Width <= 1500)
             {
-                AllCategories(25F, 4);
+                categoryResize(25F, 4);
             }
             else if (this.Size.Width > 1500 && this.Size.Width <= 1800)
             {
-                AllCategories(20F, 5);
+                categoryResize(20F, 5);
             }
         }
 
@@ -57,7 +66,6 @@ namespace CepteSef
             SqlDataReader category = adapter.SqlOperations(sqlCommandProcess.Select("Category"));
             this.Controls.Clear();
             int count = 0;
-            TableLayoutPanel panel = new TableLayoutPanel();
             panel.Dock = DockStyle.Fill;
             panel.BackColor = Color.Transparent;
             panel.ColumnCount = row;
@@ -65,7 +73,6 @@ namespace CepteSef
             this.Controls.Add(panel);
             panel.AutoScroll = true;
             int i = 0, j = 0;
-            int count2 = 0;
             while (category.Read())
             {
                 categoriesCard = new UC_CategoryCardPanel();
@@ -95,6 +102,15 @@ namespace CepteSef
                 count++;
             }
             Form1.form1.connection.Close();
+        }
+        public void categoryResize(Single percent, int row)
+        {
+            panel.ColumnCount = row;
+            while (count2 < row)
+            {
+                panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, percent));
+                count2++;
+            }
         }
     }
 }
